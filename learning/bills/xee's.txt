@@ -1,5 +1,0 @@
-Bill breakdown
-pie:                      ...30
-coffee:                   ...20
-tip:                      ...20.00
-total:                    ...70.00
