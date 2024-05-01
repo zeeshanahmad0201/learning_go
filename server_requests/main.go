@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -13,7 +14,9 @@ func main() {
 	fmt.Println("Wecome to get_requests project!")
 	// PerformGetRequest(baseUrl)
 
-	PerformPostJsonRequest(baseUrl)
+	// PerformPostJsonRequest(baseUrl)
+
+	PerformPostFormRequest(baseUrl)
 }
 
 func PerformGetRequest(url string) {
@@ -61,6 +64,27 @@ func PerformPostJsonRequest(url string) {
 	checkNilErr(err)
 
 	fmt.Println(string(contentByte))
+}
+
+func PerformPostFormRequest(baseUrl string) {
+
+	baseUrl = baseUrl + "/postform"
+
+	data := url.Values{}
+
+	data.Add("firstname", "go")
+	data.Add("secondname", "lang")
+
+	response, err := http.PostForm(baseUrl, data)
+	checkNilErr(err)
+
+	defer response.Body.Close()
+
+	contentByte, err := io.ReadAll(response.Body)
+	checkNilErr(err)
+
+	fmt.Println(string(contentByte))
+
 }
 
 func checkNilErr(err error) {
