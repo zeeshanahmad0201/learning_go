@@ -25,7 +25,6 @@ func main() {
 	}
 
 	wg.Wait()
-	fmt.Println(signals)
 }
 
 func getStatusCode(endpoint string) {
